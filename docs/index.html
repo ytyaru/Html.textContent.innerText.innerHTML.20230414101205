@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="author" content="ytyaru">
+<link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+<link rel="icon" href="asset/image/avator.png">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/main.js"></script>
+</head>
+<body>
+<h1>textContent, innerText, innerHTMLの挙動確認</h1>
+<p>　改行コードの設定と取得ができるか。HTML表示するとき、テキスト取得するときに改行コードはどうなるか。</p>
+<div style="display:flex;">
+<section><h2>設定・HTML表示</h2>
+<table>
+<tr><th>値</th><th><code>textContent</code></th><th><code>innerText</code></th><th><code>innerHTML</code></th></tr>
+<tr><th><code>あ\nい</code></th><td id="tc-nl"></td><td id="it-nl"></td><td id="ih-nl"></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td id="tc-br"></td><td id="it-br"></td><td id="ih-br"></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td id="tc-b"></td><td id="it-b"></td><td id="ih-b"></td></tr>
+</table>
+</section>
+<section><h2>取得・テキスト表示</h2>
+<table>
+<tr><th>値</th><th><code>textContent</code></th><th><code>innerText</code></th><th><code>innerHTML</code></th></tr>
+<tr><th><code>あ\nい</code></th><td><pre><code id="g-tc-nl"></code></pre></td><td><pre><code id="g-it-nl"></code></pre></td><td><pre><code id="g-ih-nl"></code></pre></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td><pre><code id="g-tc-br"></code></pre></td><td><pre><code id="g-it-br"></code></pre></td><td><pre><code id="g-ih-br"></code></pre></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td><pre><code id="g-tc-b"></code></pre></td><td><pre><code id="g-it-b"></code></pre></td><td><pre><code id="g-ih-b"></code></pre></td></tr>
+</table>
+</section>
+</div>
+
+<h2>設定してから別の属性で取得したときのHTML表示</h2>
+<div style="display:flex;">
+<section>
+<table class="r">
+<tr><th><code>textContent</code></th><th><code>innerText</code></th><th><code>innerHTML</code></th></tr>
+<tr><th><code>あ\nい</code></th><td id="tc-it-nl"></td><td id="tc-ih-nl"></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td id="tc-it-br"></td><td id="tc-ih-br"></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td id="tc-it-b"></td><td id="tc-ih-b"></td></tr>
+</table>
+</section>
+<section>
+<table class="r">
+<tr><th><code>innerText</code></th><th><code>textContent</code></th><th><code>innerHTML</code></th></tr>
+<tr><th><code>あ\nい</code></th><td id="it-tc-nl"></td><td id="it-ih-nl"></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td id="it-tc-br"></td><td id="it-ih-br"></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td id="it-tc-b"></td><td id="it-ih-b"></td></tr>
+</table>
+</section>
+<section>
+<table class="r">
+<tr><th><code>innerHTML</code></th><th><code>innerText</code></th><th><code>textContent</code></th></tr>
+<tr><th><code>あ\nい</code></th><td id="ih-it-nl"></td><td id="ih-tc-nl"></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td id="ih-it-br"></td><td id="ih-tc-br"></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td id="ih-it-b"></td><td id="ih-tc-b"></td></tr>
+</table>
+</section>
+</div>
+
+<h2>設定してから別の属性で取得したときのテキスト表示</h2>
+<div style="display:flex;">
+<section>
+<table class="r">
+<tr><th><code>textContent</code></th><th><code>innerText</code></th><th><code>innerHTML</code></th></tr>
+<tr><th><code>あ\nい</code></th><td><pre><code id="g-tc-it-nl"></code></pre></td><td><pre><code id="g-tc-ih-nl"></code></pre></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td><pre><code id="g-tc-it-br"></code></pre></td><td><pre><code id="g-tc-ih-br"></code></pre></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td><pre><code id="g-tc-it-b"></code></pre></td><td><pre><code id="g-tc-ih-b"></code></pre></td></tr>
+</table>
+</section>
+<section>
+<table class="r">
+<tr><th><code>innerText</code></th><th><code>textContent</code></th><th><code>innerHTML</code></th></tr>
+<tr><th><code>あ\nい</code></th><td><pre><code id="g-it-tc-nl"></code></pre></td><td><pre><code id="g-it-ih-nl"></code></pre></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td><pre><code id="g-it-tc-br"></code></pre></td><td><pre><code id="g-it-ih-br"></code></pre></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td><pre><code id="g-it-tc-b"></code></pre></td><td><pre><code id="g-it-ih-b"></code></pre></td></tr>
+</table>
+</section>
+<section>
+<table class="r">
+<tr><th><code>innerHTML</code></th><th><code>innerText</code></th><th><code>textContent</code></th></tr>
+<tr><th><code>あ\nい</code></th><td><pre><code id="g-ih-it-nl"></code></pre></td><td><pre><code id="g-ih-tc-nl"></code></pre></td></tr>
+<tr><th><code>う&lt;br&gt;え</code></th><td><pre><code id="g-ih-it-br"></code></pre></td><td><pre><code id="g-ih-tc-br"></code></pre></td></tr>
+<tr><th><code>&lt;b&gt;おか&lt;/b&gt;</code></th><td><pre><code id="g-ih-it-b"></code></pre></td><td><pre><code id="g-ih-tc-b"></code></pre></td></tr>
+</table>
+</section>
+
+</div>
+
+
+    <footer>
+        <span>© 2023 ytyaru</span>
+        <a title="CC-BY-SA" \
+           href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja"
+           style="text-decoration: none;">
+            <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Cc.logo.circle.svg"></img>
+            <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg"></img>
+            <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/2/29/Cc-sa.svg"></img>
+            <!--<img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/CC-BY-SA_icon.svg"></img>-->
+    </a></footer>
+</body>
+</html>
+<!-- https://coliss.com/articles/build-websites/operation/work/html-template-for-web-apps-or-sites.html -->
+<!-- https://coliss.com/articles/build-websites/operation/work/html5-template-for-2018.html -->
